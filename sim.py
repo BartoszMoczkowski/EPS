@@ -195,24 +195,27 @@ def sim(data):
 
 
 data = {
-    "m" : 300,
-    "l" : 1.2,
-    "b" : 0.20,
-    "B" : 0.5,
+    "m" : 305,
+    "l" : 1.3,
+    "b" : 0.168,
+    "B" : 0.754+0.168,
     "r" : 0.1,
-    "h" : 0.3,
+    "h" : 0.298,
     "g" : 9.81,
     "v" : 1,
     "R" : 1,
     "f": 0.0263,
-    "K" : 0.075,
-    "mu" : 0.9,
+    "K" : 0.025,
+    "mu" : 0.6,
 }
-print("starting")
-solution, forces = sim(data)
+for R in [0.5,1,2,5,10,30,100]:
 
-Fxi,Fxo,Fyi,Fyo,Mli,Mlo,Mti,Mto = forces
+    print(f"starting for r:{R}")
+    data["R"] = R
+    solution, forces = sim(data)
 
-print(Fyi,Fyo)
+    Fxi,Fxo,Fyi,Fyo,Mli,Mlo,Mti,Mto = forces
+
+    print(Fyi,Fyo)
 
 
